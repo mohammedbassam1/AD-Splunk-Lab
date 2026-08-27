@@ -35,7 +35,7 @@ errorCode=5
 error code=5   means that  access is denied :   searched for it in google 
 
 
-![Pasted image](<images/Pasted image.png>)
+![Pasted image](< images/Pasted image.png>)
 
 
 
@@ -59,14 +59,14 @@ Add-LocalGroupMember -Group "Event Log Readers" -Member "NT SERVICE\SplunkForwar
 ```
 
 
-![Pasted image (2)](<images/Pasted image (2).png>)
+![Pasted image (2)](< images/Pasted image (2).png>)
 
 
 after adding  to  event log readers group
 
 
 
-![Pasted image (3)](<images/Pasted image (3).png>)
+![Pasted image (3)](< images/Pasted image (3).png>)
 
 
 
@@ -83,7 +83,7 @@ when i was searching for extracted fields it wasnt showing and didnt give any va
 
 
 
-![Pasted image (4)](<images/Pasted image (4).png>)
+![Pasted image (4)](< images/Pasted image (4).png>)
 
 
 - **root cause of problem**
@@ -123,7 +123,7 @@ sudo /opt/splunk/bin/splunk restart
 
 
 
-![Pasted image (5)](<images/Pasted image (5).png>)
+![Pasted image (5)](< images/Pasted image (5).png>)
 
 
 
@@ -161,19 +161,19 @@ Most importantly, the exercise reinforced the value of validating SIEM detection
 
 
 
-![Pasted image (6)](<images/Pasted image (6).png>)
+![Pasted image (6)](< images/Pasted image (6).png>)
 
 
 
 
-![Pasted image (7)](<images/Pasted image (7).png>)
+![Pasted image (7)](< images/Pasted image (7).png>)
 
 
 
 
 
-![Pasted image (8)](<images/Pasted image (8).png>)
+![Pasted image (8)](< images/Pasted image (8).png>)
 
 
 
-![Pasted image (9)](<images/Pasted image (9).png>)
+![Pasted image (9)](< images/Pasted image (9).png>)
