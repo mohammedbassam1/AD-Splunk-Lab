@@ -1,0 +1,721 @@
+# Splunk Complete Guide
+
+    
+Hostname: 
+Splunk OS: Ubuntu
+IP: 192.168.56.66 
+
+Role: SIEM / Log Management
+
+
+
+
+## installing Splunk Server
+
+
+
+#### 1 downloading the package 
+
+
+https://www.splunk.com/en_us/download/splunk-enterprise.html  
+
+
+create an account then install the package for your OS in our case its Ubuntu  `deb` 
+
+
+after that open a terminal where u downloaded the package and run 
+
+
+```
+
+sudo apt install ./splunk-10.4.2-33c3bf42cd73-linux-amd64.deb
+```
+
+then run it 
+```
+sudo /opt/splunk/bin/splunk start --accept-license
+
+```
+
+while installing  it will   ask u to create a  username and password for administrator 
+![[Pasted image 20260812202556.png]]
+##### 2- Accessing Splunk from web
+
+
+
+http://localhost:8000 and enter the username and password  u created
+
+
+
+![[Pasted image 20260812202715.png]]
+
+
+
+
+
+
+
+#### 3-Enable Receiving Port
+
+
+in Splunk web:
+
+
+**Settings → Forwarding and receiving → Configure receiving → Add new**
+
+
+specify the port u gonna receive logs on  by forwarders
+
+
+
+Port: 9997 which is the default port for Splunk
+
+![[Pasted image 20260812202856.png]]
+
+
+
+
+- make sure ur  Host is listening  with this command
+
+```
+sudo ss -lntp | grep 9997
+
+```
+
+![[Pasted image 20260812202945.png]]
+
+
+
+
+### 4- enabling Forwarder Monitoring
+
+- Logged in to **Splunk Web**.
+- Navigated to **Settings → Monitoring Console**.
+- Opened **Forwarders → Forwarder Monitoring**.
+- Enabled **Forwarder Monitoring**.
+- This allows us to monitor the **Universal Forwarders** connected to the Splunk server.
+- Connected devices: **WS01, WS02, and SRV01**.
+
+
+
+![[Pasted image 20260812203109.png]]
+
+
+
+
+
+
+
+
+
+
+---- 
+
+
+#### Installing Forwarders on Agents
+
+
+#### 1. Download Splunk Universal Forwarder
+
+Download the **Splunk Universal Forwarder** from the official Splunk website:
+
+[Splunk Universal Forwarder Download](https://www.splunk.com/en_us/download/universal-forwarder.html)
+
+Select the appropriate **Windows version**. In our lab, we use **Windows 11 and Windows Server**.
+
+After downloading:
+
+1. Start the installer from the download location.
+
+
+![[Pasted image 20260812203431.png]]
+
+
+
+    
+2. Create the **username and password** required for the Universal Forwarder.
+
+
+![[Pasted image 20260812203600.png]]
+
+
+
+3. Configure the **Receiving Indexer** during the installation  and leave Deployment server empty 
+
+![[Pasted image 20260812203709.png]]
+
+
+
+4- Complete the installation and ensure the **SplunkForwarder** service is running.
+
+
+
+make sure its downloaded  
+
+open a powershell :
+
+```
+Get-Service SplunkForwarder
+
+```
+
+
+```
+Test-NetConnection 192.168.56.66 -Port 9997
+```
+
+
+if its
+
+
+```
+TcpTestSucceeded : True
+```
+
+
+then its sending  to the splunk server
+
+
+![[Pasted image 20260812204013.png]]
+
+
+
+
+**you  will do the same steps  on all the windows machines** 
+
+
+
+---
+
+
+
+## Configuring forwarders log Collection
+
+
+in windows machines  we wanna forward from :
+
+
+**1- Navigate to the `inputs.conf` Configuration Path**
+
+```
+C:\Program Files\SplunkUniversalForwarder\etc\system\local\
+```
+
+**2- Then open or create:**
+
+```
+inputs.conf
+```
+
+
+
+**3- add Logs  we want to forward to splunk :** 
+
+```
+[WinEventLog://Security]
+disabled = 0
+index = wineventlog
+renderXml = true
+
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+disabled = 0
+index = wineventlog
+renderXml = true
+
+[WinEventLog://Microsoft-Windows-PowerShell/Operational]
+disabled = 0
+index = wineventlog
+renderXml = true
+```
+
+
+**4- Restart Splunk-forwarder**  
+
+```
+
+Restart-Service SplunkForwarder
+```
+
+
+
+
+![[Pasted image 20260822202204.png]]
+
+
+
+
+
+
+#### In Splunk  server
+
+
+
+go to settings  >  indexes > new Index
+
+![[Pasted image 20260822212619.png]]
+
+
+
+add the index we put in input.conf for forwarders  which is  `wineventlog`
+
+
+![[Pasted image 20260822212713.png]]
+
+
+
+
+## Testing 
+
+
+
+we tested if  the  logs we added is  collected using this query
+
+
+`index=wineventlog | stats count by host sourcetype`
+
+
+![[Pasted image 20260822212316.png]]
+
+
+
+
+
+
+
+---
+
+# Logs parsing and normalization
+
+
+
+![[Pasted image 20260825210017.png]]
+
+
+**The raw XML events are difficult to search and filter. Therefore, parsing is required to extract individual fields and make the logs easier to analyze and use for detection rules.**
+
+
+
+
+
+## Parsing
+
+we want to turn raw events  data to  fields
+
+
+
+##### starting with Sysmon
+
+on the Splunk server
+
+- 1-  make a directory for local settings
+
+```
+sudo mkdir -p /opt/splunk/etc/apps/windows_security/local
+```
+
+
+we dont wanna edit the default  splunk files  . we want  to configure our own settings to manage it easier
+
+
+
+- 2- creating  properties file:
+
+config file for Splunk that we use to  tell Splunk : when u receive this type of file apply these configurations 
+
+
+```
+sudo nano /opt/splunk/etc/apps/windows_security/local/props.conf
+```
+
+![[Pasted image 20260826035122.png]]
+
+
+put in side it :
+
+
+```
+[XmlWinEventLog:Microsoft-Windows-Sysmon/Operational]
+REPORT-sysmon_xml = sysmon_xml_fields
+```
+
+
+first line  declares the source type
+
+2nd line : field extraction file.
+
+
+
+3-  creating transforms.conf file:
+
+this file  configure   the fields extraction 
+
+![[Screenshot From 2026-08-26 03-50-56.png]]
+
+
+
+- to make sure config is working  properly 
+
+```
+sudo /opt/splunk/bin/splunk btool transforms list sysmon_xml_fields --debug
+```
+
+- it should shows the files we created if it worked 
+
+
+![[Pasted image 20260826035432.png]]
+
+
+
+
+```
+sudo /opt/splunk/bin/splunk btool props list "XmlWinEventLog:Microsoft-Windows-Sysmon/Operational" --debug
+
+```
+
+we check the config of prop.conf  if  it worked or not 
+
+
+**==btool== is used  to inspect and validate Splunk effective configsand identify  which config file  each setting coming from**
+
+
+
+
+4-  restart splunk
+
+```
+sudo /opt/splunk/bin/splunk restart
+```
+
+
+
+![[Pasted image 20260826040430.png]]
+
+
+
+
+as u can see  fields  are being extracted automatically   by splunk from the sysmon xml events and can be searched for  , filtered  
+
+
+
+
+#### Powershell and security  
+
+we follow  the same steps  for sysmon parsing
+
+
+![[Pasted image 20260826041613.png]]
+
+![[Pasted image 20260826041628.png]]
+
+
+
+
+
+---
+
+## Normalization 
+
+
+we want to make the name of the fields Normalized  between all sources  so  its easier for analyst to search , filter . 
+
+
+
+#### 1-  we used FIELDALIAS 
+
+
+ to group similar field names if there any difference from log sources
+
+
+![[Pasted image 20260826090005.png]]
+
+
+![[Pasted image 20260826090032.png]]
+
+
+
+#### - 2- (Eventtypes)
+
+
+  created a new config file 
+  
+```
+sudo nano /opt/splunk/etc/apps/windows_security/local/eventtypes.conf
+
+```
+
+
+
+
+![[Pasted image 20260826090236.png]]
+
+
+useful for: 
+
+1- group events with similar function 
+
+2-   easier searches  
+
+3-  to use tags
+
+
+```
+index=wineventlog eventtype=winevent_process_create
+```
+
+
+![[Pasted image 20260826090654.png]]
+
+
+1 search included  both Sysmon event ID : 1 and security logs event id : 4688
+
+
+
+
+#### 3- tags
+
+
+it declares  the category for  the eventtypes
+
+
+useful for:
+
+1-  grouping  eventypes for different  systems based on categories: 
+
+example: authentication logs  from  linux,windows,Firewall, AWS
+
+all can be searched  by using  `tag=authentication`
+
+
+2- Hierarchical Tagging) :
+
+using more than 1 tag on the same event 
+
+example:  `tag = authentication , tag=failure or tag=Success`
+
+
+
+
+- we added them   by creating a new config file
+
+
+```
+
+ sudo nano /opt/splunk/etc/apps/windows_security/local/tags.conf
+
+```
+
+![[Pasted image 20260826091608.png]]
+
+
+
+
+![[Pasted image 20260826091812.png]]
+
+as u can see it  shows  authentication logs  both faiil and success
+
+
+---
+
+#  Detection Rules - Alerts 
+
+
+starts with search query for specific rule
+
+
+
+
+## Brute force attempts
+
+
+```
+index=wineventlog tag=authentication tag=failure
+| stats count as Failed_Attempts by host , src_ip, user
+| where Failed_Attempts > 5
+```
+
+
+```
+| stats count as Failed_Attempts by host , src_ip, user
+```
+
+this line counts the number of failed attempts events and puts it   in Failed_Attempts column 
+
+and collects host - src_ip - user
+
+
+```
+| where Failed_Attempts > 5
+
+```
+
+
+this is the condition  to trigger  only when  the failed attempts  is more than 5
+
+
+![[Pasted image 20260826222225.png]]
+
+
+
+#### to make the alert :  
+
+**2. Save As Alert**
+
+- Navigate to the top right and select **Save As** > **Alert**.
+    
+- **Title:** `SOC - Suspicious Command / Hack Tool Execution` (or `SOC - Brute Force Attack Detected`)
+    
+
+**3. Schedule Settings**
+
+- **Alert type:** `Scheduled`
+    
+- **Cron Schedule:** `*/5 * * * *` (Runs every 5 minutes)
+    
+- **Time Range:** `Last 5 minutes` (Only scans new events per run to prevent duplicate alerts)
+    
+
+**4. Trigger Conditions**
+
+- **Trigger condition:** `Number of Results` > `is greater than` > `0` (Fires immediately upon detecting any matching event)
+    
+- **Trigger:** `Once`
+    
+
+**5. Alert Actions & Permissions**
+
+- **Trigger Actions:** `Add to Triggered Alerts`
+    
+- **Severity:** `High` (or `Medium`)
+    
+- **Expires:** `24 hours` (or `7 days`)
+    
+- **Permissions:** `Shared in App` (Allows all SOC analysts in the workspace to view and investigate the alert)
+    
+- Click **Save**.
+
+
+
+## Suspicious parent process spawned
+
+```
+index=wineventlog tag=process tag=report
+| eval proc=lower(coalesce(process_name, Image)), parent=lower(coalesce(parent_process_name, ParentImage)), full_path=lower(Image)
+| search NOT (full_path="*splunk*" OR parent="*splunk*" OR proc="*splunk*")
+| where match(proc, "(\\bpowershell|\bcmd|\bwhoami|\bnet1?\.exe|\bnltest|\bvssadmin|\bmimikatz)")
+| stats count by _time, host, user, ParentImage, Image, CommandLine
+| sort - _time
+
+```
+
+
+- **`| eval proc=lower(...), parent=lower(...), full_path=lower(Image)`**
+    
+    - **Function:** Normalizes and converts all process names, parent names, and full binary execution paths to lowercase to enable case-insensitive filtering.
+        
+    - **CIM Compatibility:** Uses `coalesce` to dynamically pick either CIM field names (`process_name`, `parent_process_name`) or native Windows fields (`Image`, `ParentImage`).
+        
+- **`| search NOT (full_path="*splunk*" OR parent="*splunk*" OR proc="*splunk*")`**
+    
+    - **Function (Alert Tuning / Whitelisting):** Eliminates false positives by dropping any event originating from Splunk Enterprise, Splunk Universal Forwarder, or background operational scripts running from `C:\Program Files\Splunk...`.
+        
+- **`| where match(proc, "(\\bpowershell|\bcmd|\bwhoami|\bnet1?\.exe|\bnltest|\bvssadmin|\bmimikatz)")`**
+    
+    - **Function (Detection Logic):** Flags the execution of native reconnaissance utilities (LOLBins) and offensive attack tools.
+        
+    - **Regex `\b`:** Enforces word boundaries to match exact tool names and prevent accidental partial string matches.
+        
+- **`| stats count by _time, host, user, ParentImage, Image, CommandLine`**
+    
+    - **Function:** Aggregates and displays the investigation baseline: execution timestamp (`_time`), targeted asset (`host`), active account (`user`), parent binary (`ParentImage`), executed binary (`Image`), and full arguments (`CommandLine`).
+        
+- **`| sort - _time`**
+    
+    - **Function:** Sorts output in reverse chronological order (newest activity first).
+        
+
+**Alert Configuration:**
+
+- **Title:** `SOC - Suspicious Command / Hack Tool Execution`
+    
+- **Alert Type:** `Scheduled`
+    
+- **Cron Schedule:** `*/5 * * * *`
+    
+- **Time Range:** `Last 5 minutes`
+    
+- **Trigger Condition:** `Number of Results` > `is greater than` > `0`
+    
+- **Trigger Actions:** `Add to Triggered Alerts` (Severity: `High`, Permissions: `Shared in App`)
+
+
+
+![[Pasted image 20260826232446.png]]
+
+
+
+I made another 7 alerts wont get to all of them  but u get the idea on how to make a  detection rule and  how to alert it
+
+
+
+
+![[Pasted image 20260826232540.png]]
+
+
+
+
+## Testing
+
+
+i created a user account and added it  to administrator group to test user creation rule  
+
+
+
+![[Pasted image 20260826232916.png]]
+
+
+
+Alert is triggered 
+
+
+![[Pasted image 20260826232936.png]]
+
+
+
+![[Pasted image 20260826233054.png]]
+
+
+
+
+
+
+
+
+
+---
+
+# Dashboards
+
+A Security Operations Center (SOC) dashboard transforms raw, high-volume event logs into actionable visual intelligence for real-time threat monitoring and fast investigation.
+
+**Key Benefits of a SOC Dashboard:**
+
+- **Real-Time Threat Visibility:** Aggregates critical security metrics, active alerts, and host activity into a single pane of glass without running manual queries repeatedly.
+    
+- **Accelerated Triage & MTTR:** Reduces Mean Time to Respond (MTTR) by clearly highlighting compromised assets, targeted users, and attack types for rapid decision-making.
+    
+- **Trend & Anomaly Detection:** Uses time-series charts to spot sudden spikes in malicious activity, such as brute-force logon attempts or mass process executions.
+    
+- **Operational Efficiency:** Streamlines daily analyst workflows using interactive dropdown filters (Time Range, Host, User, Severity) to quickly isolate incidents.
+    
+- **Executive & Compliance Reporting:** Delivers clear, high-level summaries of organizational security posture and incident trends for management without complex query syntax
+
+
+
+
+u create it using XML : ngl i asked ai to do it for me since its iam not going to use for this lab but its really important to know how to make  one 
+
+
+
+![[Pasted image 20260827040824.png]]
+
+![[Pasted image 20260827040652.png]]
