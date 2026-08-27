@@ -427,10 +427,10 @@ we want to make the name of the fields Normalized  between all sources  so  its 
  to group similar field names if there any difference from log sources
  
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 03-51-13.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 08-59-59.png>)
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 03-54-29.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 09-00-28.png>)
 
 
 
@@ -447,7 +447,7 @@ sudo nano /opt/splunk/etc/apps/windows_security/local/eventtypes.conf
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 04-04-26.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 08-59-59.png>)
 
 
 useful for: 
