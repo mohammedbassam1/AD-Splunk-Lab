@@ -47,7 +47,7 @@ http://localhost:8000 and enter the username and password  u created
 
 
 
-![[Pasted image 20260812202715.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-25-48.png>)
 
 
 
@@ -70,7 +70,7 @@ specify the port u gonna receive logs on  by forwarders
 
 Port: 9997 which is the default port for Splunk
 
-![[Pasted image 20260812202856.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-27-09.png>)
 
 
 
@@ -82,7 +82,7 @@ sudo ss -lntp | grep 9997
 
 ```
 
-![[Pasted image 20260812202945.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-28-38.png>)
 
 
 
@@ -98,7 +98,7 @@ sudo ss -lntp | grep 9997
 
 
 
-![[Pasted image 20260812203109.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-29-44.png>)
 
 
 
@@ -128,7 +128,7 @@ After downloading:
 1. Start the installer from the download location.
 
 
-![[Pasted image 20260812203431.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-31-06.png>)
 
 
 
@@ -136,14 +136,13 @@ After downloading:
 2. Create the **username and password** required for the Universal Forwarder.
 
 
-![[Pasted image 20260812203600.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-34-17.png>)
 
 
 
 3. Configure the **Receiving Indexer** during the installation  and leave Deployment server empty 
 
-![[Pasted image 20260812203709.png]]
-
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-35-59.png>)
 
 
 4- Complete the installation and ensure the **SplunkForwarder** service is running.
@@ -176,8 +175,7 @@ TcpTestSucceeded : True
 then its sending  to the splunk server
 
 
-![[Pasted image 20260812204013.png]]
-
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-37-04.png>)
 
 
 
@@ -239,7 +237,7 @@ Restart-Service SplunkForwarder
 
 
 
-![[Pasted image 20260822202204.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-39-36.png>)
 
 
 
@@ -252,14 +250,14 @@ Restart-Service SplunkForwarder
 
 go to settings  >  indexes > new Index
 
-![[Pasted image 20260822212619.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-12 20-40-07.png>)
 
 
 
 add the index we put in input.conf for forwarders  which is  `wineventlog`
 
 
-![[Pasted image 20260822212713.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-22 20-20-14.png>)
 
 
 
@@ -274,7 +272,7 @@ we tested if  the  logs we added is  collected using this query
 `index=wineventlog | stats count by host sourcetype`
 
 
-![[Pasted image 20260822212316.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-22 21-23-10.png>)
 
 
 
@@ -288,8 +286,7 @@ we tested if  the  logs we added is  collected using this query
 
 
 
-![[Pasted image 20260825210017.png]]
-
+![Screenshot](<splunk images/Screenshot From 2026-08-22 21-26-14.png>)
 
 **The raw XML events are difficult to search and filter. Therefore, parsing is required to extract individual fields and make the logs easier to analyze and use for detection rules.**
 
@@ -327,7 +324,7 @@ config file for Splunk that we use to  tell Splunk : when u receive this type of
 sudo nano /opt/splunk/etc/apps/windows_security/local/props.conf
 ```
 
-![[Pasted image 20260826035122.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-22 21-26-47.png>)
 
 
 put in side it :
@@ -349,7 +346,7 @@ first line  declares the source type
 
 this file  configure   the fields extraction 
 
-![[Screenshot From 2026-08-26 03-50-56.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-22 21-37-17.png>)
 
 
 
@@ -362,7 +359,7 @@ sudo /opt/splunk/bin/splunk btool transforms list sysmon_xml_fields --debug
 - it should shows the files we created if it worked 
 
 
-![[Pasted image 20260826035432.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-22 21-38-50.png>)
 
 
 
@@ -388,7 +385,7 @@ sudo /opt/splunk/bin/splunk restart
 
 
 
-![[Pasted image 20260826040430.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-22 22-09-36.png>)
 
 
 
@@ -403,9 +400,9 @@ as u can see  fields  are being extracted automatically   by splunk from the sys
 we follow  the same steps  for sysmon parsing
 
 
-![[Pasted image 20260826041613.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-25 21-00-15.png>)
 
-![[Pasted image 20260826041628.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 03-50-56.png>)
 
 
 
@@ -424,12 +421,12 @@ we want to make the name of the fields Normalized  between all sources  so  its 
 
 
  to group similar field names if there any difference from log sources
+ 
+
+![Screenshot](<splunk images/Screenshot From 2026-08-26 03-51-13.png>)
 
 
-![[Pasted image 20260826090005.png]]
-
-
-![[Pasted image 20260826090032.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 03-54-29.png>)
 
 
 
@@ -446,7 +443,7 @@ sudo nano /opt/splunk/etc/apps/windows_security/local/eventtypes.conf
 
 
 
-![[Pasted image 20260826090236.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 04-04-26.png>)
 
 
 useful for: 
@@ -463,8 +460,7 @@ index=wineventlog eventtype=winevent_process_create
 ```
 
 
-![[Pasted image 20260826090654.png]]
-
+![Screenshot](<splunk images/Screenshot From 2026-08-26 04-15-55.png>)
 
 1 search included  both Sysmon event ID : 1 and security logs event id : 4688
 
@@ -504,12 +500,12 @@ example:  `tag = authentication , tag=failure or tag=Success`
 
 ```
 
-![[Pasted image 20260826091608.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 04-16-26.png>)
 
 
 
 
-![[Pasted image 20260826091812.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 05-54-46.png>)
 
 as u can see it  shows  authentication logs  both faiil and success
 
@@ -552,7 +548,7 @@ and collects host - src_ip - user
 this is the condition  to trigger  only when  the failed attempts  is more than 5
 
 
-![[Pasted image 20260826222225.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 06-19-36.png>)
 
 
 
@@ -649,7 +645,7 @@ index=wineventlog tag=process tag=report
 
 
 
-![[Pasted image 20260826232446.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 08-59-59.png>)
 
 
 
@@ -658,7 +654,7 @@ I made another 7 alerts wont get to all of them  but u get the idea on how to ma
 
 
 
-![[Pasted image 20260826232540.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 09-00-28.png>)
 
 
 
@@ -670,18 +666,18 @@ i created a user account and added it  to administrator group to test user creat
 
 
 
-![[Pasted image 20260826232916.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 09-02-32.png>)
 
 
 
 Alert is triggered 
 
 
-![[Pasted image 20260826232936.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 09-06-47.png>)
 
 
 
-![[Pasted image 20260826233054.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 09-15-42.png>)
 
 
 
@@ -716,6 +712,6 @@ u create it using XML : ngl i asked ai to do it for me since its iam not going t
 
 
 
-![[Pasted image 20260827040824.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 09-18-03.png>)
 
-![[Pasted image 20260827040652.png]]
+![Screenshot](<splunk images/Screenshot From 2026-08-26 22-22-24.png>)
