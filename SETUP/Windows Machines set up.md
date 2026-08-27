@@ -19,7 +19,7 @@
  - we did the same thing for  WIN02 
 
 
-![[Pasted image 20260812222654.png]]
+![WIN02 DNS](<setup images/Screenshot From 2026-08-12 22-26-48.png>)
 
 
 
@@ -42,7 +42,7 @@
 - after that  click  change >   Domain   lab.local
 
 
-![[Pasted image 20260812223514.png]]
+![Domain Join](<setup images/Screenshot From 2026-08-12 22-35-14.png>)
 
 
 
@@ -70,7 +70,7 @@ https://github.com/SwiftOnSecurity/sysmon-config  and put it inside Sysmon folde
 
 
 
-![[Pasted image 20260822192043.png]]
+![Sysmon Files](<setup images/Screenshot From 2026-08-22 19-20-39.png>)
 
 
 
@@ -84,7 +84,7 @@ Sysmon.exe -accepteula -i sysmonconfig-export.xml
 ```
 
 
-![[Pasted image 20260822192158.png]]
+![Start Sysmon](<setup images/Screenshot From 2026-08-22 19-21-33.png>)
 
 
 
@@ -102,7 +102,7 @@ sc query sysmon
 
 
 
-![[Pasted image 20260822192548.png]]
+![Verify Sysmon](<setup images/Screenshot From 2026-08-22 19-25-36.png>)
 
 
 
