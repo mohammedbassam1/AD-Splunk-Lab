@@ -35,7 +35,7 @@ errorCode=5
 error code=5   means that  access is denied :   searched for it in google 
 
 
-![Pasted image](< images/Pasted image.png>)
+![Pasted image 2](%20images/Pasted%20image%20%282%29.png)
 
 
 
