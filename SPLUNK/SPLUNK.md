@@ -255,14 +255,14 @@ Restart-Service SplunkForwarder
 
 go to settings  >  indexes > new Index
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-40-07.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-22 21-26-14.png>)
 
 
 
 add the index we put in input.conf for forwarders  which is  `wineventlog`
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 20-20-14.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-22 21-26-47.png>)
 
 
 
