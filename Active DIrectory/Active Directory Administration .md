@@ -16,7 +16,7 @@ First of all i created AN Organizational Units to organize domain-joined compute
 
 
 
-![[Pasted image 20260812231217.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-12 23-11-16.png>)
 
 
 
@@ -32,8 +32,7 @@ The following OUs were created:
 - Groups: 
 
 
-![[Pasted image 20260812231901.png]]
-
+![Screenshot](<Active directory images/Screenshot From 2026-08-12 23-18-54.png>)
 
 
 
@@ -55,11 +54,11 @@ Right click > New > User   > provide user info and setup the password
 
 
 
-![[Pasted image 20260812232708.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-12 23-25-26.png>)
 
 
 
-![[Pasted image 20260812232731.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-12 23-27-28.png>)
 
 
 
@@ -77,8 +76,7 @@ Users created : sarah.user ,  john.user , IT admin
   Right click on  AD-Groups    > new > group  >  name the group and add it 
 
 
-
-![[Pasted image 20260812233229.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-12 23-31-48.png>)
 
 **Security Group**  :
 
@@ -105,7 +103,7 @@ to add multiple users that have the same  role
 right click on the user > Properties > click on member of   > add    > IT-Admins
 
 
-![[Pasted image 20260812235023.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-12 23-50-21.png>)
 
 
 
@@ -130,8 +128,7 @@ right click on the user > Properties > click on member of   > add    > IT-Admins
  on server manager    click  : tools >  group policy management 
 
 
-
-![[Pasted image 20260820164228.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 16-42-23.png>)
 
 
 
@@ -141,15 +138,14 @@ right click on the user > Properties > click on member of   > add    > IT-Admins
 Click on Workstations OU  >  Create a GPO in the domain  and link it here
 
 
-
-![[Pasted image 20260820164329.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 16-43-27.png>)
 
 
 
 name the policy then  then right click on and   click on Edit
 
 
-![[Pasted image 20260820164458.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 16-44-55.png>)
 
 
 
@@ -161,7 +157,7 @@ set Audit Credential validation to    success . failure
 
 
 
-![[Pasted image 20260820164806.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 16-48-01.png>)
 
 
 
@@ -183,8 +179,7 @@ click on : Allow log on locally
 
 
 
-![[Pasted image 20260820165906.png]]
-
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 16-58-55.png>)
 
 
 check  the define these policy settings box
@@ -194,7 +189,7 @@ check  the define these policy settings box
 add the users / groups 
 
 
-![[Pasted image 20260820170122.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-00-56.png>)
 
 
 
@@ -204,7 +199,7 @@ Now click on  Deny log on locally
 
  and add guests group 
 
-![[Pasted image 20260820170300.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-01-55.png>)
 
 
 
@@ -227,7 +222,7 @@ click on :
 
 
 
-![[Screenshot From 2026-08-20 17-07-13.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-07-13.png>)
 
 
 
@@ -239,7 +234,7 @@ click on
 `Accounts : Guest account  status Properties`  : Disabled 
 
 
-![[Pasted image 20260820170928.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-08-48.png>)
 
 
 
@@ -258,7 +253,7 @@ click on : `Interactive logon: Machine inactivity limit `
 put it to : 900 sec  ( 15 min ) 
 
 
-![[Pasted image 20260820171609.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-14-56.png>)
 
 
 
@@ -274,8 +269,7 @@ click on :   `User Account Control: Behavior of the elevation prompt for standar
 
 
 
-![[Pasted image 20260820172105.png]]
-
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-20-57.png>)
 
 
 
@@ -301,7 +295,7 @@ inbound connetions : `block`
 outbound connection : `allow`
 
 
-![[Pasted image 20260820172835.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-25-14.png>)
 
 
 
@@ -339,7 +333,7 @@ right click   > New Rule    > choose Predefined  and choose   `Windows Managemen
 
 
 
-![[Pasted image 20260820173722.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-36-09.png>)
 
 
 
@@ -360,7 +354,7 @@ right click on rules   > properties  > scope  > remote  address >   put the ip  
 
 
 
-![[Pasted image 20260820174748.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-47-45.png>)
 
 
 
@@ -378,7 +372,7 @@ we added another policy for workstations  to  Log PowerShell   Script Block logg
 
 - 2-   enable: module logging , Powershell Script Block logging
 
-![[Pasted image 20260822195845.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-50-50.png>)
 
 
 
@@ -395,7 +389,7 @@ in the same windows security policy go to   policies > windows settings > securi
 
 all these are important evidence in security channel 
 
-![[Pasted image 20260827041356.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 18-18-03.png>)
 
 
 ## Testing 
@@ -411,15 +405,14 @@ gpupdate / force
 
 
 
-![[Pasted image 20260820175052.png]]
-
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 18-20-37.png>)
 
 
 
 from DC01  Remote Scheduled tasks is working 
 
 
-![[Pasted image 20260820181807.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-20 18-30-09.png>)
 
 
 
@@ -427,14 +420,14 @@ from DC01  Remote Scheduled tasks is working
 
 also   the normal user cant  open as administrator
 
-![[Pasted image 20260820182046.png]]
+![Screenshot](<Active directory images/Screenshot From 2026-08-22 19-55-25.png>)
 
 
 
 also  credential validation policy we allowed is working
 
 
-![[Pasted image 20260820183026.png]]
+![Pasted image](<Active directory images/Pasted image.png>)
 
 
 
