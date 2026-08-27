@@ -1,4 +1,4 @@
-#Challenges 
+# Challenges 
 
 This project was far from smooth but that was the best part. From debugging tricky errors to rethinking parts of the setup, pushing through the unexpected roadblocks is where the real learning happened.
 
