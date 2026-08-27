@@ -447,8 +447,7 @@ sudo nano /opt/splunk/etc/apps/windows_security/local/eventtypes.conf
 
 
 
-![Screenshot](<Splunk images/Screenshot From 2026-08-26 08-59-59.png>)
-
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 09-02-32.png>)
 
 useful for: 
 
@@ -464,7 +463,7 @@ index=wineventlog eventtype=winevent_process_create
 ```
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 04-15-55.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 09-06-47.png>)
 
 1 search included  both Sysmon event ID : 1 and security logs event id : 4688
 
@@ -504,12 +503,12 @@ example:  `tag = authentication , tag=failure or tag=Success`
 
 ```
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 04-16-26.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 09-15-42.png>)
 
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 05-54-46.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 09-18-03.png>)
 
 as u can see it  shows  authentication logs  both faiil and success
 
@@ -552,7 +551,7 @@ and collects host - src_ip - user
 this is the condition  to trigger  only when  the failed attempts  is more than 5
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 06-19-36.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 22-22-24.png>)
 
 
 
