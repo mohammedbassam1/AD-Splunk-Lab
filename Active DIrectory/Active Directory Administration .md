@@ -389,7 +389,7 @@ in the same windows security policy go to   policies > windows settings > securi
 
 all these are important evidence in security channel 
 
-![Screenshot](<Active directory images/Screenshot From 2026-08-20 18-18-03.png>)
+![Pasted image](<Active directory images/Pasted image.png>)
 
 
 ## Testing 
@@ -405,14 +405,14 @@ gpupdate / force
 
 
 
-![Screenshot](<Active directory images/Screenshot From 2026-08-20 18-20-37.png>)
+![Pasted image (2)](<Active directory images/Pasted image (2).png>)
 
 
 
 from DC01  Remote Scheduled tasks is working 
 
 
-![Screenshot](<Active directory images/Screenshot From 2026-08-20 18-30-09.png>)
+![Pasted image (3)](<Active directory images/Pasted image (3).png>)
 
 
 
@@ -420,14 +420,14 @@ from DC01  Remote Scheduled tasks is working
 
 also   the normal user cant  open as administrator
 
-![Screenshot](<Active directory images/Screenshot From 2026-08-22 19-55-25.png>)
+![Pasted image (4)](<Active directory images/Pasted image (4).png>)
 
 
 
 also  credential validation policy we allowed is working
 
 
-![Pasted image](<Active directory images/Pasted image.png>)
+![Pasted image (5)](<Active directory images/Pasted image (5).png>)
 
 
 
