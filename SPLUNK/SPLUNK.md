@@ -277,8 +277,7 @@ we tested if  the  logs we added is  collected using this query
 `index=wineventlog | stats count by host sourcetype`
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 21-23-10.png>)
-
+![Screenshot](<Splunk images/Screenshot From 2026-08-22 21-23-10.png>)
 
 
 
