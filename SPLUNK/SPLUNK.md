@@ -290,7 +290,7 @@ we tested if  the  logs we added is  collected using this query
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 21-26-14.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-25 21-00-15.png>)
 
 **The raw XML events are difficult to search and filter. Therefore, parsing is required to extract individual fields and make the logs easier to analyze and use for detection rules.**
 
@@ -328,7 +328,7 @@ config file for Splunk that we use to  tell Splunk : when u receive this type of
 sudo nano /opt/splunk/etc/apps/windows_security/local/props.conf
 ```
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 21-26-47.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 03-50-56.png>)
 
 
 put in side it :
