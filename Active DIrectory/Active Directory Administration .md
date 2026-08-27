@@ -372,7 +372,7 @@ we added another policy for workstations  to  Log PowerShell   Script Block logg
 
 - 2-   enable: module logging , Powershell Script Block logging
 
-![Screenshot](<Active directory images/Screenshot From 2026-08-20 17-50-50.png>)
+![Screenshot](<Active directory images/Screenshot From 2026-08-22 19-55-25.png>)
 
 
 
