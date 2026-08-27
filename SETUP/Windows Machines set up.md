@@ -13,7 +13,7 @@
 
 - we configured  WIN01  IP And  the domain controller  as Preferred DNS server :
 
-![[Pasted image 20260812222339.png]]
+![Image](<setup images/Screenshot From 2026-08-12 22-23-30.png>)
 
 
  - we did the same thing for  WIN02 
