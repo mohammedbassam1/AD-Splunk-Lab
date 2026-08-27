@@ -350,7 +350,7 @@ first line  declares the source type
 
 this file  configure   the fields extraction 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 21-37-17.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 03-51-13.png>)
 
 
 
@@ -363,7 +363,7 @@ sudo /opt/splunk/bin/splunk btool transforms list sysmon_xml_fields --debug
 - it should shows the files we created if it worked 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 21-38-50.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 03-54-29.png>)
 
 
 
@@ -389,7 +389,7 @@ sudo /opt/splunk/bin/splunk restart
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-22 22-09-36.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 04-04-26.png>)
 
 
 
@@ -404,9 +404,9 @@ as u can see  fields  are being extracted automatically   by splunk from the sys
 we follow  the same steps  for sysmon parsing
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-25 21-00-15.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 04-15-55.png>)
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 03-50-56.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 04-16-26.png>)
 
 
 
