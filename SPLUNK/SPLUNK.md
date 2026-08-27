@@ -38,7 +38,10 @@ sudo /opt/splunk/bin/splunk start --accept-license
 ```
 
 while installing  it will   ask u to create a  username and password for administrator 
-![[Pasted image 20260812202556.png]]
+
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-25-48.png>)
+
+
 ##### 2- Accessing Splunk from web
 
 
@@ -46,8 +49,7 @@ while installing  it will   ask u to create a  username and password for adminis
 http://localhost:8000 and enter the username and password  u created
 
 
-
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-25-48.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-27-09.png>)
 
 
 
@@ -70,7 +72,7 @@ specify the port u gonna receive logs on  by forwarders
 
 Port: 9997 which is the default port for Splunk
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-27-09.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-28-38.png>)
 
 
 
@@ -82,7 +84,7 @@ sudo ss -lntp | grep 9997
 
 ```
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-28-38.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-29-44.png>)
 
 
 
@@ -98,7 +100,7 @@ sudo ss -lntp | grep 9997
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-29-44.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-31-06.png>)
 
 
 
@@ -128,7 +130,7 @@ After downloading:
 1. Start the installer from the download location.
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-31-06.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-34-17.png>)
 
 
 
@@ -136,14 +138,13 @@ After downloading:
 2. Create the **username and password** required for the Universal Forwarder.
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-34-17.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-35-59.png>)
 
 
 
 3. Configure the **Receiving Indexer** during the installation  and leave Deployment server empty 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-35-59.png>)
-
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-37-04.png>)
 
 4- Complete the installation and ensure the **SplunkForwarder** service is running.
 
@@ -175,7 +176,7 @@ TcpTestSucceeded : True
 then its sending  to the splunk server
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-37-04.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-12 20-40-07.png>)
 
 
 
