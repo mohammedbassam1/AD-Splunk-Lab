@@ -26,7 +26,7 @@ lab.local
 
 - 7-  Restarted the server to complete the configuration.
 
-![Image](<SETUP DC images/Screenshot From 2026-08-12 22-42-455555.png>)
+![Image](<SETUP/SETUP DC images/Screenshot From 2026-08-12 22-42-455555.png>)
 
 
 
