@@ -419,7 +419,11 @@ we follow  the same steps  for sysmon parsing
 
 we want to make the name of the fields Normalized  between all sources  so  its easier for analyst to search , filter . 
 
+```
+ sudo nano /opt/splunk/etc/apps/windows_security/local/props.conf
+```
 
+ADD FIELDALIAS in the file:
 
 #### 1-  we used FIELDALIAS 
 
@@ -648,7 +652,7 @@ index=wineventlog tag=process tag=report
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 08-59-59.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 23-24-44.png>)
 
 
 
@@ -657,8 +661,7 @@ I made another 7 alerts wont get to all of them  but u get the idea on how to ma
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 09-00-28.png>)
-
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 23-25-38.png>)
 
 
 
@@ -669,20 +672,16 @@ i created a user account and added it  to administrator group to test user creat
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 09-02-32.png>)
-
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 23-29-07.png>)
 
 
 Alert is triggered 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 09-06-47.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 23-29-27.png>)
 
 
-
-![Screenshot](<splunk images/Screenshot From 2026-08-26 09-15-42.png>)
-
-
+![Screenshot](<Splunk images/Screenshot From 2026-08-26 23-30-53.png>)
 
 
 
@@ -715,6 +714,6 @@ u create it using XML : ngl i asked ai to do it for me since its iam not going t
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 09-18-03.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-27 04-00-49.png>)
 
-![Screenshot](<splunk images/Screenshot From 2026-08-26 22-22-24.png>)
+![Screenshot](<Splunk images/Screenshot From 2026-08-27 04-08-18.png>)
