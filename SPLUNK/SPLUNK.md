@@ -716,4 +716,5 @@ u create it using XML : ngl i asked ai to do it for me since its iam not going t
 
 ![Screenshot](<Splunk images/Screenshot From 2026-08-27 04-00-49.png>)
 
+
 ![Screenshot](<Splunk images/Screenshot From 2026-08-27 04-08-18.png>)
