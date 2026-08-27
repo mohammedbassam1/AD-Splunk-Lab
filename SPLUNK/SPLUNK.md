@@ -228,6 +228,11 @@ renderXml = true
 ```
 
 
+![Screenshot](<Splunk images/Screenshot From 2026-08-22 20-20-14.png>)
+
+
+
+
 **4- Restart Splunk-forwarder**  
 
 ```
@@ -238,7 +243,6 @@ Restart-Service SplunkForwarder
 
 
 
-![Screenshot](<splunk images/Screenshot From 2026-08-12 20-39-36.png>)
 
 
 
