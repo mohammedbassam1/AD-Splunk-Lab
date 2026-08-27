@@ -127,10 +127,14 @@ This project gave me hands-on experience with:
 * Splunk Enterprise
 * Universal Forwarder
 * Log collection
-* Parsing
+* Log Parsing
 * Normalization
-* Detection engineering
-* Security monitoring and alerts
+  1-using FIELDALIAS
+  2-using  eventtypes
+  3-using Tags
+* Detection Rules engineering
+* Alerts
+* Dashboards
 
 The project helped me understand the full process of collecting endpoint telemetry and turning it into useful security detections through a SIEM.
 
